@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsPostalOffice" targetNamespace="http://www.tempuri.org/dsPostalOffice.xsd" xmlns:mstns="http://www.tempuri.org/dsPostalOffice.xsd" xmlns="http://www.tempuri.org/dsPostalOffice.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:element name="dsPostalOffice" msdata:IsDataSet="true" msdata:Locale="en-GB">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="PostalOffice">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PostalID" type="xs:int" />
+              <xs:element name="PostalDesc" type="xs:string" minOccurs="0" />
+              <xs:element name="RegionID" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Region">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RegionID" type="xs:int" />
+              <xs:element name="RegionDescription" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:PostalOffice" />
+      <xs:field xpath="mstns:PostalID" />
+    </xs:unique>
+    <xs:unique name="Region_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Region" />
+      <xs:field xpath="mstns:RegionID" />
+    </xs:unique>
+    <xs:keyref name="dsPostalOfficeRegion" refer="Region_Constraint1">
+      <xs:selector xpath=".//mstns:PostalOffice" />
+      <xs:field xpath="mstns:RegionID" />
+    </xs:keyref>
+  </xs:element>
+</xs:schema>
